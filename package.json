@@ -1,0 +1,24 @@
+{
+  "name": "webapi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vascoribs/BackEndWebAPI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vascoribs/BackEndWebAPI/issues"
+  },
+  "homepage": "https://github.com/Vascoribs/BackEndWebAPI#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.2",
+    "mongoosh": "^0.0.7",
+    "mongosh": "^2.3.4"
+  }
+}
