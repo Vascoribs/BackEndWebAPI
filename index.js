@@ -4,7 +4,7 @@ const appPort = 8080;
 
 const mongoose = require("mongoose");
 const mongooseQueryString = "mongodb://localhost:27017/ProjectoBackEndWebApi";
-const employeeSchema = new mongoose.Schema({Name: {type: String}, EmpID: {type: Number}, Age:{type: Number}, Address:{type: String}},{collection:"Employees"});
+const employeeSchema = new mongoose.Schema({Name: {type: String}, EmpID: {type: Number}, Age:{type: Number}, Address:{type: String}, Plate:{type: String}, StartDate:{type: String}, EndDate:{type: String}, Kms:{type: Number}},{collection:"Employees"});
 const employeeModel = mongoose.model("Employees", employeeSchema);
 
 mongoose.connect(mongooseQueryString);
@@ -39,7 +39,7 @@ async function queryOneEmployee(params){
     }
     catch(error){
         console.log(error);
-        return [];
+        return ["asdasd"];
     }
 } 
 
@@ -47,6 +47,29 @@ app.get("/Employees/:id", async (request,response) => {
     let resultOne = await queryOneEmployee(request.params.id);
     response.send(resultOne)
 })
+
+//função obter por Plate
+async function queryPlate(params){
+
+    try{
+        let queryPlateResults = await employeeModel.find(params).exec();
+
+        if(!queryPlateResults){return{error: "Plate Not Found"}};
+
+        return queryPlateResults;
+    }
+    catch(error){
+        return "Error"
+    }
+} 
+
+app.get("/Employees/Plate/:Plate", async function(request,response) {
+    let resultPlate = await queryPlate(request.params);
+    response.send(resultPlate)
+})
+
+
+
 
 //função adicionar Employee
 async function addEmployee(body){
